@@ -21,16 +21,19 @@ function databaseInitialize() {
     if (User === null) {
         User = db.addCollection("users");
         User.insert({username:'admin',password:'admin'});
-        User.insert({username:'user',password:'user'});
-    }
-    if (Item === null) {
+
         Item = db.addCollection('items');
     }
     console.log(User);
-}
+    User.insert({username:'fff',password:'fff'});
+    User.insert({username:'hi',password:'user'});
+        User.insert({username:'jeff',password:'user'});
+        User.insert({username:'bob',password:'user'});
 
+
+}
 //EJS
-var port = process.env.PORT || 7000;
+var port = process.env.PORT || 7001;
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -105,13 +108,22 @@ app.post('/login', function (request, response) {
     var loginName = request.body.loginName;
     var password = request.body.password;
 
+
+
     // save login name in session so it's available later
     request.session.user = loginName;
+ if(userPasswordMatch(loginName, password)){
+     response.render('listpage', {items: Item.find()});
 
+ }else{
+    response.render('index', {message: "Invalid Username or password"});
+ }
+
+    //response.render('listpage', {items: Item.find()});
     //hint: check is password is good or not, if not load same page with error as below
     //response.render('index', {message: "Invalid user name or password"});
 
-    response.render('listpage', {items: Item.find()});
+
 
 });
 
@@ -119,10 +131,12 @@ app.post('/login', function (request, response) {
 
 // when save button is clicked on add page
 app.post('/saveitem', function (request, response) {
-
+ console.log (request.body)
     // hint #1: find the helper function that will help save the information first
     // hint #2: make sure to send the list of items to the list page
+var form = request.body
 
-    response.render('listpage',{ items:[] });
+var items=saveFormAndReturnAllItems (form)
+ response.render('listpage',{ items:items });
 });
 

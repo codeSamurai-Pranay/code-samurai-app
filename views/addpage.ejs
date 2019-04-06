@@ -3,21 +3,34 @@
 <head> <% include ./head %> </head>
 <body>
 <% include ./header %>
+    <script>
+        function goback(){
+            window.history.back();
+        }
+
+
+
+    </script>
+
 
 <div class="card">
 
-    <form method="post" action="saveitem">
-
-
-
-
-
-
+    <form method="post" action="saveitem"/>
+    Song name: <input type= "text" name="songname" required/>
+    artist: <input type= "text" name= "artist" required/>
+    album: <input type= "text" name= "album" required/>
+    Link: <input type= "text" name= "link" required/>
+    Genre: <input type= "text" name= "genre" required/>
+    Rating of 10: <input type= "number" name= "rating of 10"/>
         Added by: <input type="text" name="addedBy" value="<%=loginName%>" readonly/>
 
         <button class="btn" type="submit" name="submit">Save Item</button>
+        <button class="btn" type="reset" name="reset">reset</button>
+        <button class="btn" type="reset" name="reset">cancel</button>
+
 
     </form>
+
 
 </div>
 <% include ./footer %>
