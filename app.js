@@ -140,3 +140,9 @@ var items=saveFormAndReturnAllItems (form)
  response.render('listpage',{ items:items });
 });
 
+app.get('/delete',function(request, response) {console.log(request.body)
+        var form = request.body
+        var items = deleteAndSort ("songname", request.query.songname);
+    response.render ('listpage',{items: items});
+
+                                              });

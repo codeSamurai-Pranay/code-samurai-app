@@ -10,13 +10,25 @@
 
     <table class="highlight">
         <tr>
-            <th>Song name</th><th>artist</th><th>album</th><th>link</th><th>genre</th>
-                    <th></th>
-
+            <th>Song name</th>
+            <th>artist</th>
+            <th>album</th>
+            <th>link</th>
+            <th>genre</th>
+         <th>rate</th>
+         <th>delete</th>
 
         <% items.forEach(function(item){  %>
             <tr>
-            <td><%=item.songname%></td><td><%=item.artist%></td><td><%=item.album%></td><td><%=item.link%></td><td><%=item.genre%></td><td>rate</td><td>delete</td>
+            <td><%=item.songname%></td>
+                <td><%=item.artist%></td>
+                <td><%=item.album%></td>
+                <td><%=item.link%></td>
+                <td><%=item.genre%></td>
+                <td> <i class="material-icons">star_rate</i></td>
+                <td> <a href="/delete?songname=<%=item.songname%>">
+                    <i class="material-icons">delete</i>
+                    </a></td>
 
 
 
